@@ -8,7 +8,7 @@
 </p>
 
 ## Installation Instruction
-- run ```git clone https://github.com/herdikayan/laravel-login.git laravel-login```
+- run ```git clone this repository```
 - Create a MySQL database for the project ```laravel_login```
 - From the projects root run ```cp .env.example .env```
 - Configure your ```.env``` file
