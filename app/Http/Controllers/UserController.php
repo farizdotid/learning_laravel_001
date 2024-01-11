@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MtSubSektor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,27 +12,34 @@ class UserController extends Controller
 {
     public function register()
     {
-        $data['title'] = 'Register';
-        return view('user/register', $data);
+        $title = 'Register';
+        $subSectors = MtSubSektor::all();
+        return view('user/register', compact('subSectors', 'title'));
     }
 
     public function register_action(Request $request)
     {
+        $selectedSubSectorId = $request->input('selectedSubSectorId');
+    
         $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:tb_user',
+            'business_name' => 'required|unique:tb_user',
+            'email' => 'required|unique:tb_user',
+            'phone_number' => 'required|unique:tb_user',
             'password' => 'required',
-            'password_confirm' => 'required|same:password',
+            'selectedSubSectorId' => 'required|integer',
+            'password_confirm' => 'required|same:password'
         ]);
 
         $user = new User([
-            'name' => $request->name,
-            'username' => $request->username,
+            'business_name' => $request->business_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
+            'id_sub_sektor' => $selectedSubSectorId,
         ]);
         $user->save();
 
-        return redirect()->route('login')->with('success', 'Registration success. Please login!');
+        return redirect()->route('login')->with('success', 'Pendaftaran Berhasil. Silahkan login');
     }
 
 
@@ -44,16 +52,16 @@ class UserController extends Controller
     public function login_action(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
 
         return back()->withErrors([
-            'password' => 'Wrong username or password',
+            'password' => 'Email / Password salah',
         ]);
     }
 
@@ -73,7 +81,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
         $request->session()->regenerate();
-        return back()->with('success', 'Password changed!');
+        return back()->with('success', 'Password berhasil diubah');
     }
 
     public function logout(Request $request)

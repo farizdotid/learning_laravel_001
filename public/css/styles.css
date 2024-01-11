@@ -1,0 +1,14 @@
+.btn-custom-primary {
+  background-color: #078F43; /* Replace with your desired color */
+  color: #fff; /* Set the text color to contrast with the background */
+}
+
+.btn-custom-primary:hover {
+  background-color: #29f282; /* Replace with your desired hover color */
+  color: #fff; /* Set the text color to contrast with the hover background */
+}
+
+/* Hide underline for anchor tags */
+a {
+  text-decoration: none;
+}
