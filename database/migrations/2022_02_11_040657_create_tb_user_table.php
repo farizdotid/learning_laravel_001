@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
             $table->string('password');
+            $table->integer('id_sub_sektor');
+            $table->string('business_category');
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }

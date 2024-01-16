@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -20,6 +21,7 @@ class UserController extends Controller
     public function register_action(Request $request)
     {
         $selectedSubSectorId = $request->input('selectedSubSectorId');
+        $selectedBusinessCategory = $request->input('selectedBusinessCategory');
     
         $request->validate([
             'business_name' => 'required|unique:tb_user',
@@ -27,6 +29,7 @@ class UserController extends Controller
             'phone_number' => 'required|unique:tb_user',
             'password' => 'required',
             'selectedSubSectorId' => 'required|integer',
+            'selectedBusinessCategory' => 'required',
             'password_confirm' => 'required|same:password'
         ]);
 
@@ -36,10 +39,12 @@ class UserController extends Controller
             'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
             'id_sub_sektor' => $selectedSubSectorId,
+            'business_category' => $selectedBusinessCategory
         ]);
+
         $user->save();
 
-        return redirect()->route('login')->with('success', 'Pendaftaran Berhasil. Silahkan login');
+        return redirect()->route('login')->with('success', 'Pendaftaran Berhasil');
     }
 
 

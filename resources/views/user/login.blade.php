@@ -15,6 +15,7 @@
     height: 100%;
     background-attachment: fixed;
     padding: 20px;
+    overflow-y: auto;
   }
 
   .text-gray-dark {

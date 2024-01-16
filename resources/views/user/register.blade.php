@@ -10,13 +10,18 @@
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
         -moz-osx-font-smoothing: grayscale;
+
     }
 
     html,
     body {
         height: 100%;
         background: linear-gradient(#EEEEEE, #FAF8F9);
-        overflow: hidden;
+        overflow: auto;
+        /* Add padding to the top */
+        padding-bottom: 20px;
+        
+        /* Add padding to the bottom */
     }
 
     .text-gray-dark {
@@ -27,12 +32,13 @@
         font-size: 0.85rem;
         padding: 0.5rem 1rem;
     }
+
 </style>
 @endsection
 
 @section('content')
 <div class="row">
-    <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="d-flex justify-content-center vh-100">
         <div class="col-sm-9 col-md-7 col-lg-5">
             <div class="card border-0 shadow rounded-5 my-5">
                 <div class="card-body p-4 p-sm-5">
@@ -69,12 +75,24 @@
                             </div>
                         </div>
 
+                        <div class="form-floating mb-3">
+                            <p>Kategori Usaha</p>
+                            <div class="col-md-12">
+                                <select class="form-select" name="selectedBusinessCategory" required>
+                                    <option selected disabled value="">Pilih</option>
+
+                                    <option value="pelaku_bisnis">Pelaku Bisnis</option>
+                                    <option value="komunitas_bisnis">Komunitas Bisnis</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
-                            <label>Password <span class="text-danger">*</span></label>
+                            <label>Kata Sandi <span class="text-danger">*</span></label>
                             <input class="form-control" type="password" name="password" />
                         </div>
                         <div class="mb-3">
-                            <label>Password Confirmation<span class="text-danger">*</span></label>
+                            <label>Konfirmasi Kata Sandi<span class="text-danger">*</span></label>
                             <input class="form-control" type="password" name="password_confirm" />
                         </div>
 
@@ -103,3 +121,18 @@
 
 </div>
 @endsection
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = document.getElementById('togglePassword');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.textContent = '👁️';
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.textContent = '👁️';
+        }
+    }
+</script>
