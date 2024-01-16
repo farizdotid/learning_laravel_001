@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $title = 'Create Product';
+        $title = 'Buat Produk - Ekraf Purwakarta';
         return view('user/create-product', compact('title'));
     }
 
@@ -26,7 +27,7 @@ class ProductController extends Controller
         // Handle file upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = Carbon::now()->format('Ymd') . '_' . $image->getClientOriginalName();
             $imagePath = 'uploads/products/' . $imageName;
             $image->move(public_path('uploads/products'), $imageName);
 

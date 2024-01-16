@@ -54,7 +54,7 @@
     <h1 class="mt-3">Buat Produk</h1>
     <p>Buat produk dengan data yang benar</p>
 
-    <form class="mt-5" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="mt-5" action="{{ route('createproduct.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
