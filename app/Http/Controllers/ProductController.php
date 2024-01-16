@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index_create_product()
     {
         $title = 'Buat Produk - Ekraf Purwakarta';
         return view('user/create-product', compact('title'));
+    }
+
+    public function index()
+    {
+        $user = Auth::user();
+        $userProducts = $user->products;
+
+        return view('home', compact('userProducts'));
     }
 
     public function store(Request $request)
@@ -47,6 +56,23 @@ class ProductController extends Controller
 
         // Redirect to a success page or display a success message
         // return redirect()->route('/')->with('success', 'Product created successfully!');
-        return redirect()->intended('/');
+        return redirect()->intended('dashboarduser');
+    }
+
+    public function delete($id)
+    {
+        // Retrieve the product by ID
+        $product = Product::find($id);
+
+        if (!$product) {
+            // Product not found
+            return redirect()->route('products')->with('error', 'Product not found.');
+        }
+
+        // Perform the delete action
+        $product->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('dashboarduser')->with('success', 'Product deleted successfully.');
     }
 }

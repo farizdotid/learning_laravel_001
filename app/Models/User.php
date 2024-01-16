@@ -11,7 +11,7 @@ class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'tb_user';
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'business_name',
@@ -21,4 +21,9 @@ class User extends Authenticatable {
         'id_sub_sektor',
         'business_category'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

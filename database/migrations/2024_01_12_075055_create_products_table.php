@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('created_at');
             $table->string('updated_at');
+            $table->foreignId('id')->constrained('tb_user');
         });
     }
 
