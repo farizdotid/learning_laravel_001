@@ -50,7 +50,7 @@
                         @csrf
                         <div class="mb-3">
                             <label>Nama Brand Usaha<span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" name="business_name" value="{{ old('business_name') }}" />
+                            <input class="form-control" type="text" name="business_name" value="{{ old('business_name') }}" maxlength="50" />
                         </div>
 
                         <div class="mb-3">

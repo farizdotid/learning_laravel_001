@@ -48,7 +48,8 @@
 @section('content')
 <div class="container mt-5 mb-5">
     <div class="col-sm-9 col-md-7 col-lg-5">
-        <a href="{{ route('home') }}" class="text-center text-link">← Kembali</a>
+        <a href="javascript:history.back()" class="text-center text-link">← Kembali</a>
+       
     </div>
 
     <h1 class="mt-3">Buat Produk</h1>

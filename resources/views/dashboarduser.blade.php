@@ -19,10 +19,6 @@
         height: 100%;
         background: linear-gradient(#EEEEEE, #FAF8F9);
         overflow: auto;
-        /* Add padding to the top */
-        padding-bottom: 20px;
-
-        /* Add padding to the bottom */
     }
 
     .text-gray-dark {
@@ -71,25 +67,41 @@
     .sidebar .nav-link.active {
         color: #0d6efd;
     }
+
+    .list-image {
+        width: 100%;
+        /* Make the image width 100% of its container */
+        max-height: 200px;
+        /* Set the maximum height for the image */
+        object-fit: cover;
+        /* Maintain the aspect ratio and cover the container */
+    }
 </style>
 @endsection
 
 @section('content')
 @auth
-<p>Welcome <b>{{ Auth::user()->email }}</b></p>
-<a class="btn btn-primary" href="{{ route('password') }}">Change Password</a>
-<a class="btn btn-primary" href="{{ route('createproduct') }}">Create Product</a>
-<a class="btn btn-danger" href="{{ route('logout') }}">Logout</a>
+<div class="col-sm-9 col-md-7 col-lg-5 mt-5">
+    <a href="{{ route('home') }}" class="text-center text-link">← Kembali</a>
+</div>
 
 <!-- Display user's products -->
-<div class="container">
-    <h1>List of Products</h1>
+<div class="container mt-4">
+<div class="row">
+        <div class="col-md-9">
+            <h1>Produk {{ Auth::user()->business_name }}</h1>
+        </div>
+        <div class="col-md-3">
+            <a href="{{ route('createproduct') }}" class="btn btn-primary float-md-end">Buat Produk</a>
+        </div>
+    </div>
 
-    <div class="row">
+    @if(count($userProducts) > 0)
+    <div class="row mt-4">
         @foreach($userProducts as $product)
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="{{ $product->image_path }}" class="card-img-top" alt="{{ $product->name }}">
+                <img src="{{ $product->image_path }}" class="card-img-top list-image" alt="{{ $product->name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ substr($product->description, 0, 100) }}{{ strlen($product->description) > 100 ? '...' : '' }}</p>
@@ -105,13 +117,16 @@
         </div>
         @endforeach
     </div>
+    @else
+    <!-- Empty state -->
+    <div class="text-center mt-5">
+        <img src="{{ asset('images/undraw_no_data_re_kwbl.svg') }}" alt="Empty State Image" class="img-fluid mb-3" width="80" height="80">
+        <p class="mb-3">Anda belum memiliki produk. Buat produk sekarang</p>
+    </div>
+    @endif
 </div>
 
 @endauth
-@guest
-<a class="btn btn-primary" href="{{ route('login') }}">Login</a>
-<a class="btn btn-info" href="{{ route('register') }}">Register</a>
-@endguest
 
 <!-- Modal for Deletion Confirmation -->
 @foreach($userProducts as $product)
