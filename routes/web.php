@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UpdateProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,4 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
 Route::get('createproduct', [ProductController::class, 'index_create_product'])->name('createproduct');
 Route::post('createproduct', [ProductController::class, 'store'])->name('createproduct.store');
 Route::get('products/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
+Route::get('updateprofile', [UpdateProfileController::class, 'show_page'])->name('updateprofile');

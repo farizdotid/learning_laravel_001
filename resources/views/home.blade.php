@@ -70,6 +70,19 @@
     </div>
 
     <div class="row mt-md-3">
+    <div class="col-md-2">
+            <a href="{{ route('updateprofile') }}">
+                <div class="card p-3">
+                    <img src="{{ asset('images/product-management-svgrepo-com.svg') }}" alt="Empty State Image" class="card-img-top mx-auto d-block" width="80" height="80">
+
+                    <div class="mt-md-2 text-center">
+                        <p>Update Profil</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
         <div class="col-md-2">
             <a href="{{ route('dashboarduser') }}">
                 <div class="card p-3">

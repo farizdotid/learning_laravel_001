@@ -39,8 +39,10 @@
     }
 
     .auto-expand {
-        resize: none; /* Disable manual resizing by the user */
-        overflow-y: hidden; /* Hide vertical scrollbar */
+        resize: none;
+        /* Disable manual resizing by the user */
+        overflow-y: hidden;
+        /* Hide vertical scrollbar */
     }
 </style>
 @endsection
@@ -49,7 +51,7 @@
 <div class="container mt-5 mb-5">
     <div class="col-sm-9 col-md-7 col-lg-5">
         <a href="javascript:history.back()" class="text-center text-link">← Kembali</a>
-       
+
     </div>
 
     <h1 class="mt-3">Buat Produk</h1>
@@ -69,8 +71,8 @@
         </div>
 
         <div class="mb-3">
-        <label for="description" class="form-label">Deskripsi :</label>
-    <textarea class="form-control auto-expand" id="description" name="description" rows="1"></textarea>
+            <label for="description" class="form-label">Deskripsi :</label>
+            <textarea class="form-control auto-expand" id="description" name="description" rows="1"></textarea>
         </div>
 
         <div class="mb-3">
@@ -85,7 +87,7 @@
 </div>
 
 <script>
-    document.addEventListener('input', function (e) {
+    document.addEventListener('input', function(e) {
         if (e.target.classList.contains('auto-expand')) {
             e.target.style.height = 'auto';
             e.target.style.height = (e.target.scrollHeight) + 'px';
