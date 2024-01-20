@@ -76,6 +76,23 @@
         object-fit: cover;
         /* Maintain the aspect ratio and cover the container */
     }
+
+    .floating-button {
+        position: fixed;
+        bottom: 24px;
+        right: 32px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .floating-button:hover {
+        background-color: #0056b3;
+    }
 </style>
 @endsection
 
@@ -87,14 +104,7 @@
 
 <!-- Display user's products -->
 <div class="container mt-4">
-<div class="row">
-        <div class="col-md-9">
-            <h1>Produk {{ Auth::user()->business_name }}</h1>
-        </div>
-        <div class="col-md-3">
-            <a href="{{ route('createproduct') }}" class="btn btn-primary float-md-end">Buat Produk</a>
-        </div>
-    </div>
+<h1>Produk {{ Auth::user()->business_name }}</h1>
 
     @if(count($userProducts) > 0)
     <div class="row mt-4">
@@ -106,11 +116,10 @@
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ substr($product->description, 0, 100) }}{{ strlen($product->description) > 100 ? '...' : '' }}</p>
                     <p class="card-text">Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
-                    <a href="#" class="btn btn-primary">Lihat Detail</a>
 
                     <!-- Delete Button with Modal Trigger -->
-                    <button class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->id }}">
-                        <i class="bi bi-trash"></i> Hapus
+                    <button class="btn btn-danger delete-btn" style="font-size: 12px;" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->id }}">
+                     Hapus produk
                     </button>
                 </div>
             </div>
@@ -126,6 +135,9 @@
     @endif
 </div>
 
+<a href="{{ route('createproduct') }}" class="floating-button">
+    <img src="{{ asset('images/add-ellipse-svgrepo-com.svg') }}" alt="Add Product" width="32" height="32">
+</a>
 @endauth
 
 <!-- Modal for Deletion Confirmation -->
