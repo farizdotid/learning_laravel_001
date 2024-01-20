@@ -38,7 +38,6 @@
 
 @section('content')
 <div class="row">
-     <!-- New section for text above the card -->
      <div class="col-sm-9 col-md-7 col-lg-5 mt-5">
                 <a href="{{ route('home') }}" class="text-center text-link">← Kembali</a>
             </div>
@@ -47,7 +46,6 @@
         <div class="col-sm-9 col-md-7 col-lg-5">
             <div class="card border-0 shadow rounded-5 my-5">
                 <div class="card-body p-4 p-sm-5">
-
                     <h3>Daftar</h3>
                     <p>Isi data dengan lengkap dan sesuai</p>
 

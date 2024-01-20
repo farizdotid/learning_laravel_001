@@ -31,6 +31,7 @@
 
 @section('content')
 <div class="row">
+
   <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="col-sm-9 col-md-7 col-lg-5">
       <div class="card border-0 shadow rounded-5 my-5">
@@ -61,11 +62,6 @@
           @endforeach
           @endif
         </div>
-      </div>
-
-      <!-- New section for text above the card -->
-      <div class="col-sm-9 col-md-7 col-lg-5">
-        <a href="{{ route('home') }}" class="text-center text-gray-dark">← Kembali ke Home</a>
       </div>
     </div>
   </div>
