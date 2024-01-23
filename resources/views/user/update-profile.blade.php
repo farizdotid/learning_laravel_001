@@ -111,6 +111,30 @@
     color: #078F43 !important;
     /* Change this color to your desired color */
   }
+
+  .form-select {
+    font-size: 0.825rem;
+    /* Set the default font size for the select */
+  }
+
+  .form-select option {
+    font-size: 0.825rem;
+    /* Set the font size for non-selected options */
+  }
+
+  .form-select option[disabled] {
+    font-size: 0.825rem;
+    /* Set the font size for disabled options */
+  }
+
+  .form-select option:checked {
+    font-size: 0.825rem;
+    /* Set the font size for the selected option */
+  }
+
+  .form-control::placeholder {
+  color: #9fa8b9; /* Set the desired color for the placeholder text */
+}
 </style>
 @endsection
 
@@ -178,7 +202,11 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="business_category">Kategori Bisnis</label>
-                <input type="name" class="form-control" id="business_category" placeholder="Pelaku Bisnis/Komunitas UMKM">
+                <select class="form-select mt-md-1 mt-1" name="business_category" required>
+                  <option selected disabled value="">Pilih</option>
+                  <option value="pelaku_bisnis">Pelaku Bisnis</option>
+                  <option value="komunitas_umkm">Komunitas UMKM</option>
+                </select>
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -190,14 +218,38 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="subsector_category">Kategori SubSektor</label>
-                <input type="text" class="form-control" id="subsector_category" placeholder="Kuliner/Aplikasi/Fotografi">
+                <select class="form-select" name="selectedSubSectorId" required>
+                  <option selected disabled value="">Pilih Sektor</option>
+
+                  @foreach ($subSectors as $subSektor)
+                  <option value="{{ $subSektor->id }}">{{ $subSektor->name }}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="kecamatan">Kecamatan</label>
-                <input type="text" class="form-control" id="kecamatan" placeholder="Pilih Kecamatan">
+                <select class="form-select mt-md-1 mt-1" name="kecamatan" required>
+                  <option selected disabled value="">Pilih</option>
+                  <option value="babakancikao">Babakancikao</option>
+                  <option value="bojong">Bojong</option>
+                  <option value="bungursari">Bungursari</option>
+                  <option value="cempaka">Cempaka</option>
+                  <option value="cibatu">Cibatu</option>
+                  <option value="darangdan">Darangdan</option>
+                  <option value="jatiluhur">Jatiluhur</option>
+                  <option value="kiarapedes">Kiarapedes</option>
+                  <option value="maniis">Maniis</option>
+                  <option value="pasawahan">Pasawahan</option>
+                  <option value="plered">Plered</option>
+                  <option value="pondoksalam">Pondoksalam</option>
+                  <option value="purwakarta">Purwakarta</option>
+                  <option value="sukasari">Sukasari</option>
+                  <option value="tegalwaru">Tegal Waru</option>
+                  <option value="wanayasa">Wanayasa</option>
+                </select>
               </div>
             </div>
 
@@ -218,35 +270,68 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="business_legal">Legal Usaha ( Badan Hukum )</label>
-                <input type="text" class="form-control" id="business_legal" placeholder="PT/CV/Yayasan/Belum Ada">
+                <select class="form-select mt-md-1 mt-1" name="business_legal" required>
+                  <option selected disabled value="">Pilih Badan Hukum</option>
+                  <option value="pt">PT</option>
+                  <option value="cv">CV</option>
+                  <option value="pt_perorangan">PT Perorangan</option>
+                  <option value="firma">Firma</option>
+                  <option value="yayasan">Yayasan</option>
+                  <option value="perkumpulan">Perkumpulan</option>
+                  <option value="belum_ada">Belum Ada</option>
+                </select>
               </div>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="nib">NIB (Nomor Induk Berusaha)</label>
-                <input type="text" class="form-control" id="nib" placeholder="0000111">
+                <select class="form-select mt-md-1 mt-1" name="nib" required>
+                  <option selected disabled value="">Pilih</option>
+                  <option value="sudah_ada">Sudah Ada</option>
+                  <option value="belum_ada">Belum Ada</option>
+                  <option value="tidak_pakai">Tidak Pakai</option>
+                  <option value="belum_mengerti">Belum Mengerti</option>
+                </select>
               </div>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="siup">SIUP (Surat Izin Usaha Perdagangan)</label>
-                <input type="text" class="form-control" id="siup" placeholder="0000111">
+                <select class="form-select mt-md-1 mt-1" name="siup" required>
+                  <option selected disabled value="">Pilih</option>
+                  <option value="sudah_ada">Sudah Ada</option>
+                  <option value="belum_ada">Belum Ada</option>
+                  <option value="tidak_pakai">Tidak Pakai</option>
+                  <option value="belum_mengerti">Belum Mengerti</option>
+                </select>
               </div>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="haki">HAKI (Hak Kekayaan Intelektual)</label>
-                <input type="text" class="form-control" id="haki" placeholder="Sudah Ada/Belum Ada">
+                <select class="form-select mt-md-1 mt-1" name="haki" required>
+                  <option selected disabled value="">Pilih</option>
+                  <option value="sudah_ada">Sudah Ada</option>
+                  <option value="belum_ada">Belum Ada</option>
+                  <option value="belum_mengerti">Belum Mengerti</option>
+                </select>
               </div>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="income">Pendapatan Perbulan</label>
-                <input type="text" class="form-control" id="haki" placeholder="10000">
+                <select class="form-select mt-md-1 mt-1" name="income" required>
+                  <option selected disabled value="">Pilih</option>
+                  <option value="kurang_dari_3_juta">
+                    < 3 Juta</option>
+                  <option value="3_sampai_5_juta">3-5 Juta</option>
+                  <option value="lebih_dari_5_juta">> 5 Juta</option>
+                  <option value="ngo">NGO</option>
+                </select>
               </div>
             </div>
 
