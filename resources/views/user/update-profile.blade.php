@@ -345,7 +345,7 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
               <div class="form-group">
                 <label for="solutions">Solusi yang Diharapkan</label>
-                <textarea class="form-control auto-expand" id="sokutions" maxlength="500"></textarea>
+                <textarea class="form-control auto-expand" id="solutions" maxlength="500"></textarea>
               </div>
             </div>
           </div>

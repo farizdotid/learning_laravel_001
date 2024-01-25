@@ -39,7 +39,22 @@ class UserController extends Controller
             'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
             'id_sub_sektor' => $selectedSubSectorId,
-            'business_category' => $selectedBusinessCategory
+            'business_category' => $selectedBusinessCategory,
+            'logo_business' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png',
+            'description' => '',
+            'owner_name' => '',
+            'nik' => '',
+            'address' => '',
+            'kecamatan' => '',
+            'website' => '',
+            'social_media' => '',
+            'business_legal' => '',
+            'nib' => '',
+            'siup' => '',
+            'haki' => '',
+            'income' => '',
+            'complaints' => '',
+            'solutions' => '',
         ]);
 
         $user->save();

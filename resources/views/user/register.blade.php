@@ -32,6 +32,29 @@
     .text-link {
         color: blue;
     }
+    
+    .form-select {
+    font-size: 1rem;
+    /* Set the default font size for the select */
+  }
+
+  .form-select option {
+    font-size: 0.825rem;
+    /* Set the font size for non-selected options */
+  }
+
+  .form-select option[disabled] {
+    font-size: 0.825rem;
+    /* Set the font size for disabled options */
+  }
+
+  .form-select option:checked {
+    font-size: 0.825rem;
+    /* Set the font size for the selected option */
+  }
+
+  .form-control::placeholder {
+  color: #9fa8b9; /* Set the desired color for the placeholder text */
 
 </style>
 @endsection

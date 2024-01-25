@@ -19,7 +19,22 @@ class User extends Authenticatable {
         'phone_number',
         'password',
         'id_sub_sektor',
-        'business_category'
+        'business_category',
+        'logo_business',
+        'description',
+        'owner_name',
+        'nik',
+        'address',
+        'kecamatan',
+        'website',
+        'social_media',
+        'business_legal',
+        'nib',
+        'siup',
+        'haki',
+        'income',
+        'complaints',
+        'solutions',
     ];
 
     public function products()
