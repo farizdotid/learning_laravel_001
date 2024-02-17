@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
+    
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('description');
             $table->integer('price');
-            $table->integer('user_id');
+            $table->integer('user_id')->constrained('tb_user');
             $table->string('created_at');
             $table->string('updated_at');
-            $table->foreignId('id_user')->constrained('tb_user');
+            $table->string('image_path');
         });
     }
 

@@ -32,38 +32,39 @@
     .text-link {
         color: blue;
     }
-    
+
     .form-select {
-    font-size: 1rem;
-    /* Set the default font size for the select */
-  }
+        font-size: 1rem;
+        /* Set the default font size for the select */
+    }
 
-  .form-select option {
-    font-size: 0.825rem;
-    /* Set the font size for non-selected options */
-  }
+    .form-select option {
+        font-size: 0.825rem;
+        /* Set the font size for non-selected options */
+    }
 
-  .form-select option[disabled] {
-    font-size: 0.825rem;
-    /* Set the font size for disabled options */
-  }
+    .form-select option[disabled] {
+        font-size: 0.825rem;
+        /* Set the font size for disabled options */
+    }
 
-  .form-select option:checked {
-    font-size: 0.825rem;
-    /* Set the font size for the selected option */
-  }
+    .form-select option:checked {
+        font-size: 0.825rem;
+        /* Set the font size for the selected option */
+    }
 
-  .form-control::placeholder {
-  color: #9fa8b9; /* Set the desired color for the placeholder text */
-
+    .form-control::placeholder {
+        color: #9fa8b9;
+        /* Set the desired color for the placeholder text */
+    }
 </style>
 @endsection
 
 @section('content')
 <div class="row">
-     <div class="col-sm-9 col-md-7 col-lg-5 mt-5">
-                <a href="{{ route('home') }}" class="text-center text-link">← Kembali</a>
-            </div>
+    <div class="col-sm-9 col-md-7 col-lg-5 mt-5">
+        <a href="{{ route('home') }}" class="text-center text-link">← Kembali</a>
+    </div>
 
     <div class="d-flex justify-content-center vh-100">
         <div class="col-sm-9 col-md-7 col-lg-5">
@@ -142,18 +143,3 @@
 
 </div>
 @endsection
-
-<script>
-    function togglePasswordVisibility() {
-        const passwordInput = document.getElementById('password');
-        const toggleIcon = document.getElementById('togglePassword');
-
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            toggleIcon.textContent = '👁️';
-        } else {
-            passwordInput.type = 'password';
-            toggleIcon.textContent = '👁️';
-        }
-    }
-</script>

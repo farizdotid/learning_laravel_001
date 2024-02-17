@@ -113,7 +113,7 @@
   }
 
   .form-select {
-    font-size: 0.825rem;
+    font-size: 1rem;
     /* Set the default font size for the select */
   }
 
@@ -133,8 +133,9 @@
   }
 
   .form-control::placeholder {
-  color: #9fa8b9; /* Set the desired color for the placeholder text */
-}
+    color: #9fa8b9;
+    /* Set the desired color for the placeholder text */
+  }
 </style>
 @endsection
 
@@ -148,9 +149,12 @@
             <div class="user-profile">
               <div class="user-avatar">
                 <img src="{{ Auth::user()->logo_business }}" alt="Business Logo">
+
+                <input type="file" class="form-control mt-md-2 mt-1" id="image" name="image" accept=".jpg, .jpeg, .png" required>
               </div>
               <h5 class="user-name">{{ Auth::user()->business_name }}</h5>
               <h6 class="user-email">{{ Auth::user()->email }}</h6>
+
             </div>
 
           </div>
@@ -158,214 +162,219 @@
       </div>
     </div>
     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="row gutters">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              <h6 class="mb-2 text-primary">Data Diri Pemilik Usaha</h6>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="owner_name">Nama Lengkap</label>
-                <input type="text" class="form-control" id="owner_name" placeholder="Farit Ramadhan" value="{{ Auth::user()->owner_name }}">
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="contohemail@gmail.com">
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="phone_number">Nomor WhatsApp</label>
-                <input type="number" class="form-control" id="phone_number" placeholder="08586078xxxx">
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="nik">NIK</label>
-                <input type="number" class="form-control" id="nik" placeholder="11122233xxx">
-              </div>
-            </div>
-          </div>
-          <div class="row gutters">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              <h6 class="mt-3 mb-2 text-primary">Data Usaha</h6>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="address">Alamat Usaha</label>
-                <textarea class="form-control auto-expand" id="address" placeholder="Jl. Veteran No.408, Ciseureuh, Kec. Purwakarta, Kabupaten Purwakarta, Jawa Barat 41118" maxlength="500"></textarea>
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="business_category">Kategori Bisnis</label>
-                <select class="form-select mt-md-1 mt-1" name="business_category" required>
-                  <option selected disabled value="">Pilih</option>
-                  <option value="pelaku_bisnis">Pelaku Bisnis</option>
-                  <option value="komunitas_umkm">Komunitas UMKM</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="description">Deskripsi</label>
-                <textarea class="form-control auto-expand" id="description" placeholder="Usaha yang bergerak di bidang kuliner" maxlength="500"></textarea>
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="subsector_category">Kategori SubSektor</label>
-                <select class="form-select" name="selectedSubSectorId" required>
-                  <option selected disabled value="">Pilih Sektor</option>
 
-                  @foreach ($subSectors as $subSektor)
-                  <option value="{{ $subSektor->id }}">{{ $subSektor->name }}</option>
-                  @endforeach
-                </select>
+      <form action="{{ route('updateprofile.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="row gutters">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h6 class="mb-2 text-primary">Data Diri Pemilik Usaha</h6>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="owner_name">Nama Lengkap</label>
+                  <input type="text" class="form-control" id="owner_name" name="owner_name" placeholder="Farit Ramadhan" value="{{ Auth::user()->owner_name }}" requiredlar>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="contohemail@gmail.com" value="{{ Auth::user()->email }}">
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="phone_number">Nomor WhatsApp</label>
+                  <input type="number" class="form-control" id="phone_number" placeholder="08586078xxxx">
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="nik">NIK</label>
+                  <input type="number" class="form-control" id="nik" placeholder="11122233xxx">
+                </div>
               </div>
             </div>
+            <div class="row gutters">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h6 class="mt-3 mb-2 text-primary">Data Usaha</h6>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="address">Alamat Usaha</label>
+                  <textarea class="form-control auto-expand" id="address" placeholder="Jl. Veteran No.408, Ciseureuh, Kec. Purwakarta, Kabupaten Purwakarta, Jawa Barat 41118" maxlength="500"></textarea>
+                </div>
+              </div>
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="business_category">Kategori Bisnis</label>
+                  <select class="form-select mt-md-1 mt-1" name="business_category" required>
+                    <option selected disabled value="">Pilih</option>
+                    <option value="pelaku_bisnis">Pelaku Bisnis</option>
+                    <option value="komunitas_umkm">Komunitas UMKM</option>
+                  </select>
+                </div>
+              </div> -->
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="description">Deskripsi</label>
+                  <textarea class="form-control auto-expand" id="description" placeholder="Usaha yang bergerak di bidang kuliner" maxlength="500"></textarea>
+                </div>
+              </div>
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="subsector_category">Kategori SubSektor</label>
+                  <select class="form-select" name="selectedSubSectorId" required>
+                    <option selected disabled value="">Pilih Sektor</option>
 
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="kecamatan">Kecamatan</label>
-                <select class="form-select mt-md-1 mt-1" name="kecamatan" required>
-                  <option selected disabled value="">Pilih</option>
-                  <option value="babakancikao">Babakancikao</option>
-                  <option value="bojong">Bojong</option>
-                  <option value="bungursari">Bungursari</option>
-                  <option value="cempaka">Cempaka</option>
-                  <option value="cibatu">Cibatu</option>
-                  <option value="darangdan">Darangdan</option>
-                  <option value="jatiluhur">Jatiluhur</option>
-                  <option value="kiarapedes">Kiarapedes</option>
-                  <option value="maniis">Maniis</option>
-                  <option value="pasawahan">Pasawahan</option>
-                  <option value="plered">Plered</option>
-                  <option value="pondoksalam">Pondoksalam</option>
-                  <option value="purwakarta">Purwakarta</option>
-                  <option value="sukasari">Sukasari</option>
-                  <option value="tegalwaru">Tegal Waru</option>
-                  <option value="wanayasa">Wanayasa</option>
-                </select>
+                    @foreach ($subSectors as $subSektor)
+                    <option value="{{ $subSektor->id }}">{{ $subSektor->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div> -->
+
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="kecamatan">Kecamatan</label>
+                  <select class="form-select mt-md-1 mt-1" name="kecamatan" required>
+                    <option selected disabled value="">Pilih</option>
+                    <option value="babakancikao">Babakancikao</option>
+                    <option value="bojong">Bojong</option>
+                    <option value="bungursari">Bungursari</option>
+                    <option value="cempaka">Cempaka</option>
+                    <option value="cibatu">Cibatu</option>
+                    <option value="darangdan">Darangdan</option>
+                    <option value="jatiluhur">Jatiluhur</option>
+                    <option value="kiarapedes">Kiarapedes</option>
+                    <option value="maniis">Maniis</option>
+                    <option value="pasawahan">Pasawahan</option>
+                    <option value="plered">Plered</option>
+                    <option value="pondoksalam">Pondoksalam</option>
+                    <option value="purwakarta">Purwakarta</option>
+                    <option value="sukasari">Sukasari</option>
+                    <option value="tegalwaru">Tegal Waru</option>
+                    <option value="wanayasa">Wanayasa</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="website">Website</label>
+                  <input type="text" class="form-control" id="website" placeholder="https://ekrafpurwakarta.com/">
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="social_media">URL Sosial Media</label>
+                  <textarea class="form-control auto-expand" id="social_media" placeholder="https://www.instagram.com/purwakartacreativehub/" maxlength="500"></textarea>
+                </div>
+              </div>
+
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="business_legal">Legal Usaha ( Badan Hukum )</label>
+                  <select class="form-select mt-md-1 mt-1" name="business_legal" required>
+                    <option selected disabled value="">Pilih Badan Hukum</option>
+                    <option value="pt">PT</option>
+                    <option value="cv">CV</option>
+                    <option value="pt_perorangan">PT Perorangan</option>
+                    <option value="firma">Firma</option>
+                    <option value="yayasan">Yayasan</option>
+                    <option value="perkumpulan">Perkumpulan</option>
+                    <option value="belum_ada">Belum Ada</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="nib">NIB (Nomor Induk Berusaha)</label>
+                  <select class="form-select mt-md-1 mt-1" name="nib" required>
+                    <option selected disabled value="">Pilih</option>
+                    <option value="sudah_ada">Sudah Ada</option>
+                    <option value="belum_ada">Belum Ada</option>
+                    <option value="tidak_pakai">Tidak Pakai</option>
+                    <option value="belum_mengerti">Belum Mengerti</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="siup">SIUP (Surat Izin Usaha Perdagangan)</label>
+                  <select class="form-select mt-md-1 mt-1" name="siup" required>
+                    <option selected disabled value="">Pilih</option>
+                    <option value="sudah_ada">Sudah Ada</option>
+                    <option value="belum_ada">Belum Ada</option>
+                    <option value="tidak_pakai">Tidak Pakai</option>
+                    <option value="belum_mengerti">Belum Mengerti</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="haki">HAKI (Hak Kekayaan Intelektual)</label>
+                  <select class="form-select mt-md-1 mt-1" name="haki" required>
+                    <option selected disabled value="">Pilih</option>
+                    <option value="sudah_ada">Sudah Ada</option>
+                    <option value="belum_ada">Belum Ada</option>
+                    <option value="belum_mengerti">Belum Mengerti</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="income">Pendapatan Perbulan</label>
+                  <select class="form-select mt-md-1 mt-1" name="income" required>
+                    <option selected disabled value="">Pilih</option>
+                    <option value="kurang_dari_3_juta">
+                      < 3 Juta</option>
+                    <option value="3_sampai_5_juta">3-5 Juta</option>
+                    <option value="lebih_dari_5_juta">> 5 Juta</option>
+                    <option value="ngo">NGO</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="complaints">Keluhan Saat ini</label>
+                  <textarea class="form-control auto-expand" id="complaints" maxlength="500"></textarea>
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                  <label for="solutions">Solusi yang Diharapkan</label>
+                  <textarea class="form-control auto-expand" id="solutions" maxlength="500"></textarea>
+                </div>
               </div>
             </div>
+            <div class="row gutters">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="text-right">
+                  <a href="javascript:history.back()">
 
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="website">Website</label>
-                <input type="text" class="form-control" id="website" placeholder="https://ekrafpurwakarta.com/">
-              </div>
-            </div>
+                    <button type="button" id="submit" name="submit" class="btn btn-secondary">Kembali</button>
+                  </a>
 
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="social_media">URL Sosial Media</label>
-                <textarea class="form-control auto-expand" id="social_media" placeholder="https://www.instagram.com/purwakartacreativehub/" maxlength="500"></textarea>
-              </div>
-            </div>
+                 
+                  <button type="submit" class="btn btn-custom-primary">Simpan</button>
 
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="business_legal">Legal Usaha ( Badan Hukum )</label>
-                <select class="form-select mt-md-1 mt-1" name="business_legal" required>
-                  <option selected disabled value="">Pilih Badan Hukum</option>
-                  <option value="pt">PT</option>
-                  <option value="cv">CV</option>
-                  <option value="pt_perorangan">PT Perorangan</option>
-                  <option value="firma">Firma</option>
-                  <option value="yayasan">Yayasan</option>
-                  <option value="perkumpulan">Perkumpulan</option>
-                  <option value="belum_ada">Belum Ada</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="nib">NIB (Nomor Induk Berusaha)</label>
-                <select class="form-select mt-md-1 mt-1" name="nib" required>
-                  <option selected disabled value="">Pilih</option>
-                  <option value="sudah_ada">Sudah Ada</option>
-                  <option value="belum_ada">Belum Ada</option>
-                  <option value="tidak_pakai">Tidak Pakai</option>
-                  <option value="belum_mengerti">Belum Mengerti</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="siup">SIUP (Surat Izin Usaha Perdagangan)</label>
-                <select class="form-select mt-md-1 mt-1" name="siup" required>
-                  <option selected disabled value="">Pilih</option>
-                  <option value="sudah_ada">Sudah Ada</option>
-                  <option value="belum_ada">Belum Ada</option>
-                  <option value="tidak_pakai">Tidak Pakai</option>
-                  <option value="belum_mengerti">Belum Mengerti</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="haki">HAKI (Hak Kekayaan Intelektual)</label>
-                <select class="form-select mt-md-1 mt-1" name="haki" required>
-                  <option selected disabled value="">Pilih</option>
-                  <option value="sudah_ada">Sudah Ada</option>
-                  <option value="belum_ada">Belum Ada</option>
-                  <option value="belum_mengerti">Belum Mengerti</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="income">Pendapatan Perbulan</label>
-                <select class="form-select mt-md-1 mt-1" name="income" required>
-                  <option selected disabled value="">Pilih</option>
-                  <option value="kurang_dari_3_juta">
-                    < 3 Juta</option>
-                  <option value="3_sampai_5_juta">3-5 Juta</option>
-                  <option value="lebih_dari_5_juta">> 5 Juta</option>
-                  <option value="ngo">NGO</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="complaints">Keluhan Saat ini</label>
-                <textarea class="form-control auto-expand" id="complaints" maxlength="500"></textarea>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-              <div class="form-group">
-                <label for="solutions">Solusi yang Diharapkan</label>
-                <textarea class="form-control auto-expand" id="solutions" maxlength="500"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row gutters">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              <div class="text-right">
-                <a href="javascript:history.back()">
-
-                  <button type="button" id="submit" name="submit" class="btn btn-secondary">Kembali</button>
-                </a>
-
-                <a href="javascript:history.back()">
-                  <button type="button" id="submit" name="submit" class="btn btn-custom-primary">Simpan</button>
-                </a>
-
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
+
     </div>
   </div>
 </div>

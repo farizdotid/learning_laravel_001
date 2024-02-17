@@ -32,3 +32,4 @@ Route::get('createproduct', [ProductController::class, 'index_create_product'])-
 Route::post('createproduct', [ProductController::class, 'store'])->name('createproduct.store');
 Route::get('products/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
 Route::get('updateprofile', [UpdateProfileController::class, 'show_page'])->name('updateprofile');
+Route::post('updateprofile', [UpdateProfileController::class, 'update'])->name('updateprofile.store');
